@@ -11,7 +11,30 @@ int mtk[MAX][MAX];
 int h[MAX];
 FILE *fp;
 
+void swap(int* xp, int* yp)
+{
+    int temp = *xp;
+    *xp = *yp;
+    *yp = temp;
+}
+ 
+void bubbleSort(int arr[], int n)
+{
+    int i, j;
+    bool swapped;
+    for (i = 0; i < n - 1; i++) {
+        swapped = false;
+        for (j = 0; j < n - i - 1; j++) {
+            if (arr[j] > arr[j + 1]) {
+                swap(&arr[j], &arr[j + 1]);
+                swapped = true;
+            }
+        }
 
+        if (swapped == false)
+            break;
+    }
+}
 void printMaxtrix(int mt[][MAX], int n){
 	for(int i =0; i<n; i++)
 	{
@@ -106,22 +129,14 @@ void Leodoi(int start,int goal){
 					CHA[i]=n;
 				}
 			}
-			printf("\nTn[] chua xep: ");inmang(Tn,dem_Tn);
-			for(int i=0; i<dem_Tn-1;i++) {
-				for (int j=i+1;j<dem_Tn;j++) {
-					if (h[Tn[i]] < h[Tn[j]]) {
-						int tam=Tn[i];
-						Tn[i]=Tn[j];
-						Tn[j]=tam;
-					}
-				}
-			}
-			printf("\nTn[] da chua xep: ");inmang(Tn,dem_Tn);
-			//chen cac gia tri cua Tn vao OPEN
+			printf("\nTn[] ");inmang(Tn,dem_Tn);
 			for (int i=0;i<dem_Tn;i++) {
 				OPEN[dem++] = Tn[i];
 			}
-			printf("\nOPEN[]: ");inmang(OPEN,dem);
+			printf("\nOPEN[] chua sap xep: ");inmang(OPEN,dem);
+			//chen cac gia tri cua Tn vao OPEN
+			bubbleSort(OPEN,dem);
+			printf("\nOPEN[] da sap xep: ");inmang(OPEN,dem);
 		}
 	}
 }
