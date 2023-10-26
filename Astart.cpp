@@ -144,7 +144,6 @@ void Atart(int start, int goal) {
 			for (int i=0; i<dem-1;i++){
 				for(int j=i+1;j<dem;j++) {
 					if ( f[OPEN[i]] <f [OPEN[j]]) {
-						int tam=OPEN[i];
 						swap(&OPEN[i],&OPEN[j]);
 					}
 				}
@@ -161,7 +160,7 @@ void swap(int *x,int *y) {
 int main() {
 	read_mtk();
 	read_h();
-	Atart(0,2);
+	Atart(0,8);
 	return 0;
 }
 
